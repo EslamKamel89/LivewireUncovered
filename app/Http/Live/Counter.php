@@ -8,10 +8,10 @@ class Counter {
         $this->count++;
     }
     public function render() {
-        return <<<HTML
+        return <<<'HTML'
         <div class="flex items-center justify-center space-x-3">
             <button type="button">+</button>
-            <p class="px-3 py-2 border rounded-full">{{$this->count}}</p>
+            <p class="px-3 py-2 border rounded-full">{{ $count ?? 'not defined'}}</p>
             <button type="button">-</button>
         </div>
     HTML;
