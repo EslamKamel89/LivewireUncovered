@@ -21,7 +21,7 @@
 </head>
 
 <body>
-    {!! (new \App\Live)->initialRender(\App\Http\Live\Counter::class) !!}
+    @live(\App\Http\Live\Counter::class)
 </body>
 
 </html>
