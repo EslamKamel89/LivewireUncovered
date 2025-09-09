@@ -5,17 +5,25 @@ namespace App;
 class Live {
     function initialRender(string $class) {
         $component = new $class;
-        return \Illuminate\Support\Facades\Blade::render($component->render(), $this->getProperties($component));
+        $html =  \Illuminate\Support\Facades\Blade::render($component->render(), $this->getProperties($component));
+        $snapshot = [
+            'class' => get_class($component),
+            'data' => $this->getProperties($component)
+        ];
+        $snapshotAttribute = json_encode($snapshot);
+        return <<<HTML
+        <div wire:snapshot="$snapshotAttribute">
+            $html
+        </div>
+        HTML;
     }
     function getProperties($component): array {
-        $properties = [];
+        $result = [];
         $reflection = new \ReflectionClass($component);
         $properties = $reflection->getProperties(\ReflectionProperty::IS_PUBLIC);
         foreach ($properties as $property) {
-            $properties[$property->getName()] = $property->getValue($component);
+            $result[$property->getName()] = $property->getValue($component);
         }
-
-
-        return $properties;
+        return $result;
     }
 }

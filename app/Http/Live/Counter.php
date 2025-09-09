@@ -3,7 +3,7 @@
 namespace App\Http\Live;
 
 class Counter {
-    public int $count = 0;
+    public int $count = 10;
     public function increment() {
         $this->count++;
     }
