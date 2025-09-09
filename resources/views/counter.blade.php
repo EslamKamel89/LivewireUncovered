@@ -22,6 +22,14 @@
 
 <body>
     @live(\App\Http\Live\Counter::class)
+    <script>
+        document.querySelectorAll('[wire\\:snapshot]').forEach((el) => {
+            let data = JSON.parse(el.getAttribute('wire:snapshot'))
+            el.addEventListener('click', () => {
+                alert('You clicked me');
+            })
+        });
+    </script>
 </body>
 
 </html>
