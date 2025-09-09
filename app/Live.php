@@ -10,7 +10,7 @@ class Live {
             'class' => get_class($component),
             'data' => $this->getProperties($component)
         ];
-        $snapshotAttribute = json_encode($snapshot);
+        $snapshotAttribute = htmlentities(json_encode($snapshot));
         return <<<HTML
         <div wire:snapshot="$snapshotAttribute">
             $html
