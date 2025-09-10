@@ -24,17 +24,18 @@
     @live(\App\Http\Live\Counter::class)
     <script>
         document.querySelectorAll('[wire\\:snapshot]').forEach((el) => {
-            let data = JSON.parse(el.getAttribute('wire:snapshot'))
+            let snapshot = JSON.parse(el.getAttribute('wire:snapshot'))
             el.addEventListener('click', (e) => {
                 if (!e.target.hasAttribute('wire:click')) return
-                console.log('clicked')
+                let method = e.target.getAttribute('wire:click')
                 fetch('/api/live', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        foo: 'bar',
+                        snapshot: snapshot,
+                        callMethod: method,
                     })
                 })
             })

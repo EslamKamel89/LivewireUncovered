@@ -28,7 +28,4 @@ class Live {
         }
         return $result;
     }
-    function livewire(Request $request) {
-        return $request->all();
-    }
 }

@@ -7,5 +7,6 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // })->middleware('auth:sanctum');
 Route::post('/live', function (Request $request) {
+    dd($request->all());
     return $request->all();
 });
