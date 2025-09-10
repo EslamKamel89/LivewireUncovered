@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\Request;
+
 class Live {
     function initialRender(string $class) {
         $component = new $class;
@@ -25,5 +27,8 @@ class Live {
             $result[$property->getName()] = $property->getValue($component);
         }
         return $result;
+    }
+    function livewire(Request $request) {
+        return $request->all();
     }
 }
