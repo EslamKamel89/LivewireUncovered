@@ -1,5 +1,6 @@
 <?php
 
+use App\Live;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -7,6 +8,6 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // })->middleware('auth:sanctum');
 Route::post('/live', function (Request $request) {
-    dd($request->all());
+    (new Live())->fromSnapshot($request->get('snapshot'));
     return $request->all();
 });

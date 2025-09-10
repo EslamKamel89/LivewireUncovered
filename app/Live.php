@@ -28,4 +28,14 @@ class Live {
         }
         return $result;
     }
+    function fromSnapshot(array $snapshot) {
+        $component = new $snapshot['class'];
+        $this->setProperties($component,  $snapshot['data']);
+        return $component;
+    }
+    function setProperties($component,  array $properties) {
+        foreach ($properties as $property => $value) {
+            $component->{$property}  = $value;
+        }
+    }
 }
