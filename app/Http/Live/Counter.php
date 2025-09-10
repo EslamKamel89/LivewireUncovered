@@ -7,6 +7,9 @@ class Counter {
     public function increment() {
         $this->count++;
     }
+    public function decrement() {
+        $this->count--;
+    }
     public function render() {
         return <<<'HTML'
         <div class="flex items-center justify-center space-x-3">

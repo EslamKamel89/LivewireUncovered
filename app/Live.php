@@ -7,11 +7,7 @@ use Illuminate\Support\Facades\Request;
 class Live {
     function initialRender(string $class) {
         $component = new $class;
-        $html =  \Illuminate\Support\Facades\Blade::render($component->render(), $this->getProperties($component));
-        $snapshot = [
-            'class' => get_class($component),
-            'data' => $this->getProperties($component)
-        ];
+        [$html, $snapshot] = $this->toSnapshot($component);
         $snapshotAttribute = htmlentities(json_encode($snapshot));
         return <<<HTML
         <div wire:snapshot="$snapshotAttribute">
@@ -37,5 +33,19 @@ class Live {
         foreach ($properties as $property => $value) {
             $component->{$property}  = $value;
         }
+    }
+    function callMethod($component, $method) {
+        $component->{$method}();
+    }
+    function toSnapshot($component) {
+        $html =  \Illuminate\Support\Facades\Blade::render(
+            $component->render(),
+            $properties = $this->getProperties($component)
+        );
+        $snapshot = [
+            'class' => get_class($component),
+            'data' => $properties,
+        ];
+        return [$html, $snapshot];
     }
 }

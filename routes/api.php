@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // })->middleware('auth:sanctum');
 Route::post('/live', function (Request $request) {
-    (new Live())->fromSnapshot($request->get('snapshot'));
-    return $request->all();
+    $component =   (new Live())->fromSnapshot($request->get('snapshot'));
+    if ($method = $request->get('callMethod')) {
+        (new Live())->callMethod($component, $method);
+    }
+    [$html, $snapshot] = (new Live())->toSnapshot($component);
+    return [
+        'html' => $html,
+        'snapshot' => $snapshot,
+    ];
 });
