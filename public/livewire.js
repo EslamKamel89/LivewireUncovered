@@ -25,6 +25,7 @@ function sendRequest(el, addToPayload) {
         .then((response) => {
             let { html, snapshot } = response;
             el.__livewire = snapshot;
-            el.innerHTML = html;
+            // el.innerHTML = html;
+            Alpine.morph(el.firstElementChild, html);
         });
 }
