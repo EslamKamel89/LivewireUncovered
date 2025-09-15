@@ -27,7 +27,11 @@
 </head>
 
 <body>
+    <h2 class="w-full text-center">Counter component</h2>
     @live(\App\Http\Live\Counter::class)
+    <hr class="my-3" />
+    <h2 class="w-full text-center">Todo component</h2>
+    @live(\App\Http\Live\Todo::class)
     <script src="livewire.js"></script>
 </body>
 
