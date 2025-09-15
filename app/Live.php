@@ -37,6 +37,9 @@ class Live {
     function callMethod($component, $method) {
         $component->{$method}();
     }
+    function updateProperty($component, $property, $value) {
+        $component->{$property} = $value;
+    }
     function toSnapshot($component) {
         $html =  \Illuminate\Support\Facades\Blade::render(
             $component->render(),

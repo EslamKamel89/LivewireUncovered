@@ -6,7 +6,7 @@ use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Log;
 
 class Todo {
-    public ?string $draft = '';
+    public ?string $draft = 'Work hard play hard';
     /** @var string[] */
     public array $todos = [];
     public function addTodo() {
@@ -24,6 +24,7 @@ class Todo {
                 <input type="text" wire:model="draft" />
                 <button wire:click="addTodo">+ Todo</button>
             </div>
+            <h3>{{$draft}}</h3>
             <ul class="flex flex-col items-center space-y-1">
                 @foreach($todos as $todo)
                 <li class="p-2 duration-1000 border rounded-lg shadow-lg min-w-md hover:translate-y-1 hover:scale-105 hover:shadow-2xl hover:mb-2">{!! $todo !!}</li>

@@ -17,6 +17,8 @@ return Application::configure(basePath: dirname(__DIR__))
             '/live',
             'live/*'
         ]);
+        $middleware->remove(\Illuminate\Foundation\Http\Middleware\TrimStrings::class);
+        $middleware->remove(\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
